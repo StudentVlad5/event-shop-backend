@@ -1,7 +1,7 @@
 const auth = require('./auth');
 const users = require('./users');
 const events = require('./events');
-const packages = require('./packages');
+const packages = require('./categories');
 
 module.exports = {
   auth,

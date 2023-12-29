@@ -5,7 +5,8 @@ const { errorHandler } = require("./helpers");
 const {
   routerAuth,
   routerEvents,
-  routerPackages,
+  routerCategory,
+  routerSpecialists,
   routerAdmin,
 } = require("./routes/api");
 
@@ -29,7 +30,8 @@ app.use("/uploads", express.static(`${__dirname}/images/avatars`));
 
 app.use("/api/auth", routerAuth);
 app.use("/api/events", routerEvents);
-app.use("/api/packages", routerPackages);
+app.use("/api/categories", routerCategory);
+app.use("/api/specialists", routerSpecialists);
 app.use("/api/admin", routerAdmin);
 
 app.use((req, res) => {

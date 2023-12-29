@@ -4,18 +4,21 @@ const {
   userUpdateValidationSchema,
   userEditValidationSchema,
   userRegistationSchema,
-} = require('./users');
-const { Packages, packagesValidationSchema } = require('./package');
-const { Events, eventsValidationSchema } = require('./events');
+} = require("./users");
+const { Categories, categoriesValidationSchema } = require("./category");
+const { Events, eventsValidationSchema } = require("./events");
+const { Specialists, specialistValidationSchema } = require("./specialist");
 
 module.exports = {
   Users,
   userValidationSchema,
   userUpdateValidationSchema,
   userEditValidationSchema,
-  Packages,
-  packagesValidationSchema,
+  Categories,
+  categoriesValidationSchema,
   Events,
   eventsValidationSchema,
   userRegistationSchema,
+  Specialists,
+  specialistValidationSchema,
 };

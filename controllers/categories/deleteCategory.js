@@ -1,12 +1,12 @@
-const { Packages } = require('../../models');
+const { Categories } = require('../../models');
 
-const deletePackage = async (req, res, next) => {
+const deleteCategory = async (req, res, next) => {
   try {
     const { params } = req;
     const _id = params.id;
 
-    const events = await Packages.deleteOne({ _id });
-    if (events.deletedCount === 0) {
+    const category = await Categories.deleteOne({ _id });
+    if (category.deletedCount === 0) {
       return res.status(400).json({ message: `Bad request (id incorrect)` });
     }
     res.json({ message: 'Success deleted' });
@@ -15,4 +15,4 @@ const deletePackage = async (req, res, next) => {
   }
 };
 
-module.exports = deletePackage;
+module.exports = deleteCategory;
