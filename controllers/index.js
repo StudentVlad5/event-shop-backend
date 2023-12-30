@@ -1,9 +1,10 @@
-const auth = require('./auth');
-const users = require('./users');
-const events = require('./events');
-const active_events = require('./active_events');
-const categories = require('./categories');
-const specialists = require('./specialists');
+const auth = require("./auth");
+const users = require("./users");
+const events = require("./events");
+const active_events = require("./active_events");
+const categories = require("./categories");
+const specialists = require("./specialists");
+const orders = require("./orders");
 
 module.exports = {
   auth,
@@ -11,5 +12,6 @@ module.exports = {
   events,
   active_events,
   categories,
-  specialists
+  specialists,
+  orders,
 };

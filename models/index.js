@@ -9,6 +9,7 @@ const { Categories, categoriesValidationSchema } = require("./category");
 const { Events, eventsValidationSchema } = require("./event");
 const { ActiveEvents, activeEventsValidationSchema } = require("./activeEvent");
 const { Specialists, specialistValidationSchema } = require("./specialist");
+const { Orders, ordersValidationSchema } = require("./order");
 
 module.exports = {
   Users,
@@ -22,6 +23,8 @@ module.exports = {
   userRegistationSchema,
   Specialists,
   specialistValidationSchema,
-  ActiveEvents, 
-  activeEventsValidationSchema
+  ActiveEvents,
+  activeEventsValidationSchema,
+  Orders,
+  ordersValidationSchema,
 };
