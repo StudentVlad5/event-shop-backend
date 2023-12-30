@@ -5,6 +5,7 @@ const categoriesValidationSchema = Joi.object({
   titleFr: Joi.string().min(3).max(32).required(),
   titleUa: Joi.string().min(3).max(32).required(),
   titleRu: Joi.string().min(3).max(32).required(),
+  categoryId: Joi.string().required(),
 });
 
 const categoriesSchema = new mongoose.Schema(
@@ -24,9 +25,13 @@ const categoriesSchema = new mongoose.Schema(
     ru: {
       title: {
         type: String,
-        required: [true, "Set title of the package"],
+        required: [true, "Set title of the category"],
       },
     },
+    categoryId : {
+      type: String,
+      required: [true, "Set categoryId"],
+    }
   },
   {
     versionKey: false,

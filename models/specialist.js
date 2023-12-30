@@ -15,6 +15,7 @@ const specialistValidationSchema = Joi.object({
   nameUa: Joi.string().min(3).max(60).required(),
   descriptionRu: Joi.string().min(3).max(400).required(),
   nameRu: Joi.string().min(3).max(60).required(),
+  specialistId: Joi.string(),
 });
 
 const specialistsSchema = new mongoose.Schema(
@@ -39,36 +40,40 @@ const specialistsSchema = new mongoose.Schema(
         required: [true, "Set name of the spesialist"],
       },
     },
-    ru:{
-    description: {
-      type: String,
-      required: [true, "Set title of the spesialist"],
+    ru: {
+      description: {
+        type: String,
+        required: [true, "Set title of the spesialist"],
+      },
+      name: {
+        type: String,
+        required: [true, "Set name of the spesialist"],
+      },
     },
-    name: {
-      type: String,
-      required: [true, "Set name of the spesialist"],
-    },
-  },
-    rating: { 
+    rating: {
       type: Number,
       required: [true, "Set rating of the spesialist"],
     },
     image: {
       type: mongoose.SchemaTypes.Url,
-      default: '',
+      default: "",
     },
-    status:  { 
+    status: {
       type: String,
-      enum: ['active', 'blocked'],
+      enum: ["active", "blocked"],
       required: [true, "Set status of the spesialist"],
     },
     phone: {
       type: String,
-      required: [true, 'Set phone number'],
+      required: [true, "Set phone number"],
+    },
+    specialistId: {
+      type: String,
+      required: [true, "Set specialistId"],
     },
     email: {
       type: mongoose.SchemaTypes.Email,
-      required: [true, 'Set email user'],
+      required: [true, "Set email user"],
       unique: true,
     },
   },

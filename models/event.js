@@ -1,12 +1,12 @@
-const Joi = require('joi');
-const mongoose = require('mongoose');
-require('mongoose-type-url');
+const Joi = require("joi");
+const mongoose = require("mongoose");
+require("mongoose-type-url");
 
 const eventsValidationSchema = Joi.object({
   article_event: Joi.string().min(1).max(32).required(),
   specialistId: Joi.string().min(1).max(32).required(),
   duration: Joi.string().min(1).max(32).required(),
-  category: Joi.string().min(1).max(60).required(),
+  category: Joi.array().required(),
   rating: Joi.number().min(1).max(10).required(),
   image: Joi.string().uri(),
   nameFr: Joi.string().min(1).max(32).required(),
@@ -22,56 +22,56 @@ const EventsSchema = new mongoose.Schema(
     fr: {
       name: {
         type: String,
-        required: [true, 'Set name'],
+        required: [true, "Set name"],
       },
       description: {
         type: String,
-        required: [true, 'Set description'],
+        required: [true, "Set description"],
       },
     },
     ua: {
       name: {
         type: String,
-        required: [true, 'Set name'],
+        required: [true, "Set name"],
       },
       description: {
         type: String,
-        required: [true, 'Set description'],
+        required: [true, "Set description"],
       },
     },
     ru: {
       name: {
         type: String,
-        required: [true, 'Set name'],
+        required: [true, "Set name"],
       },
       description: {
         type: String,
-        required: [true, 'Set description'],
+        required: [true, "Set description"],
       },
     },
-    article_event: { 
+    article_event: {
       type: String,
       required: [true, "Set article_even"],
     },
-    specialistId: { 
+    specialistId: {
       type: String,
       required: [true, "Set specialistId"],
     },
-    duration: { 
+    duration: {
       type: String,
       required: [true, "Set duration"],
     },
-    category: { 
-      type: String,
+    category: {
+      type: Array,
       required: [true, "Set category"],
     },
-    rating: { 
+    rating: {
       type: Number,
-      required: [true, "Set category"],
+      required: [true, "Set rating"],
     },
-    image: { 
+    image: {
       type: String,
-      default: '',
+      default: "",
     },
   },
   {
@@ -80,6 +80,6 @@ const EventsSchema = new mongoose.Schema(
   }
 );
 
-const Events = mongoose.model('events', EventsSchema);
+const Events = mongoose.model("events", EventsSchema);
 
 module.exports = { Events, eventsValidationSchema };
