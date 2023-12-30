@@ -1,10 +1,9 @@
 const express = require("express");
-const { events, users, packages } = require("../../controllers");
+const { events, users } = require("../../controllers");
 const {
   userValidationSchema,
   userEditValidationSchema,
   eventsValidationSchema,
-  packagesValidationSchema,
 } = require("../../models");
 
 const {
@@ -86,32 +85,32 @@ router.patch(
 
 // ---- PACKAGES --- //
 
-router.get("/packages", ctrlWrapper(authMiddleware), ctrlWrapper(packages.get));
+// router.get("/packages", ctrlWrapper(authMiddleware), ctrlWrapper(packages.get));
 
-router.post(
-  "/packages/create",
-  ctrlWrapper(authMiddleware),
-  validation(packagesValidationSchema),
-  ctrlWrapper(packages.createPackages)
-);
+// router.post(
+//   "/packages/create",
+//   ctrlWrapper(authMiddleware),
+//   validation(packagesValidationSchema),
+//   ctrlWrapper(packages.createPackages)
+// );
 
-router.get(
-  "/packages/:id",
-  ctrlWrapper(authMiddleware),
-  ctrlWrapper(packages.getPackageById)
-);
+// router.get(
+//   "/packages/:id",
+//   ctrlWrapper(authMiddleware),
+//   ctrlWrapper(packages.getPackageById)
+// );
 
-router.delete(
-  "/packages/:id",
-  ctrlWrapper(authMiddleware),
-  ctrlWrapper(packages.deletePackage)
-);
+// router.delete(
+//   "/packages/:id",
+//   ctrlWrapper(authMiddleware),
+//   ctrlWrapper(packages.deletePackage)
+// );
 
-router.patch(
-  "/packages/:id",
-  ctrlWrapper(authMiddleware),
-  validation(packagesValidationSchema),
-  ctrlWrapper(packages.updatePackage)
-);
+// router.patch(
+//   "/packages/:id",
+//   ctrlWrapper(authMiddleware),
+//   validation(packagesValidationSchema),
+//   ctrlWrapper(packages.updatePackage)
+// );
 
 module.exports = routerAdmin = router;
