@@ -2,27 +2,27 @@ const { ValidationError } = require("../../helpers");
 const { Categories } = require("../../models");
 
 const createCategory = async (req, res, next) => {
-  const {
-    titleFr,
-    titleUa,
-    titleRu,
-  } = req.body;
+  const { nameFr, nameUa, nameRu, id } = req.body;
 
   const newData = {
     fr: {
-      title: titleFr,
+      title: nameFr,
     },
     ua: {
-      title: titleUa,
+      title: nameUa,
     },
     ru: {
-      title: titleRu,
+      title: nameRu,
     },
+    categoryId: id,
   };
+
   console.log("CREATE Category:", newData);
   try {
     const resCreate = await Categories.create(newData);
-    return res.status(201).json(resCreate);
+    const categories = await Categories.find();
+    res.status(200).json(categories);
+    return res.status(201).json(categories);
   } catch (err) {
     throw new ValidationError(err.message);
   }

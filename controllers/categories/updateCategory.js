@@ -1,39 +1,36 @@
-const { ValidationError, dataFilterObj } = require('../../helpers');
-const { Categories } = require('../../models');
+const { ValidationError, dataFilterObj } = require("../../helpers");
+const { Categories } = require("../../models");
 // let path = require('path');
 
 const updateCategory = async (req, res, next) => {
   const { id } = req.params;
-  const {
-    titleFr,
-    titleUa,
-    titleRu,
-  } = req.body;
+  const { nameFr, nameUa, nameRu } = req.body;
 
   const updatedData = {
+    categoryId: id,
     fr: {
-      title: titleFr,
+      title: nameFr,
     },
     ua: {
-      title: titleUa,
+      title: nameUa,
     },
     ru: {
-      title: titleRu,
+      title: nameRu,
     },
   };
 
-  console.log('UPDATE CATEGORY', updatedData);
+  console.log("UPDATE CATEGORY", updatedData);
 
   try {
-    const resUpdate = await Categories.findByIdAndUpdate(
-      { _id: id },
+    const resUpdate = await Categories.findOneAndUpdate(
+      { categoryId: id },
       updatedData,
       {
         new: true,
       }
     );
-    const newResponse = dataFilterObj(resUpdate);
-    return res.status(201).json(newResponse._doc);
+    const categories = await Categories.find();
+    res.status(201).json(categories);
   } catch (err) {
     throw new ValidationError(err.message);
   }

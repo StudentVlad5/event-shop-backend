@@ -19,8 +19,8 @@ const signin = async (req, res, next) => {
   const user = await Users.findOne({ email });
   if (!user) throw new UnauthorizedError("Email or password is wrong");
 
-  // const hashPassword = bcrypt.hashSync(email, bcrypt.genSaltSync(10));
-  // console.log(hashPassword);
+  // const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+  // console.log("hashPassword",hashPassword);
   const isCorrectPassword = bcrypt.compareSync(password, user.password);
   if (!isCorrectPassword)
     throw new UnauthorizedError("Email or password is wrong");
