@@ -14,6 +14,7 @@ const createSpecialist = async (req, res, next) => {
     nameUa,
     descriptionRu,
     nameRu,
+    id,
   } = req.body;
 
   const newData = {
@@ -34,11 +35,14 @@ const createSpecialist = async (req, res, next) => {
     status,
     phone,
     email,
+    specialistId : id,
+
   };
   console.log("CREATE Specialist:", newData);
   try {
     const resCreate = await Specialists.create(newData);
-    return res.status(201).json(resCreate);
+    const specialists = await Specialists.find();
+    return res.status(201).json(specialists);
   } catch (err) {
     throw new ValidationError(err.message);
   }

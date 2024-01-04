@@ -36,20 +36,21 @@ const updateSpecialist = async (req, res, next) => {
     status,
     phone,
     email,
+    specialistId: id,
   };
 
   console.log('UPDATE SPECIALIST', updatedData);
 
   try {
-    const resUpdate = await Specialists.findByIdAndUpdate(
-      { _id: id },
+    const resUpdate = await Specialists.findOneAndUpdate(
+      { specialistId: id },
       updatedData,
       {
         new: true,
       }
     );
-    const newResponse = dataFilterObj(resUpdate);
-    return res.status(201).json(newResponse._doc);
+    const specialists = await Specialists.find();
+    return res.status(201).json(specialists);
   } catch (err) {
     throw new ValidationError(err.message);
   }
