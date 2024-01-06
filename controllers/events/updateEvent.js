@@ -6,52 +6,57 @@ const updateEvent = async (req, res, next) => {
   const { id } = req.params;
   const {
     image,
-    date,
-    time,
+    image_1,
+    image_2,
     nameFr,
     descriptionFr,
     nameUa,
     descriptionUa,
     nameRu,
     descriptionRu,
-    article_event,
     specialistId,
     duration,
     category,
-    rating
+    category_second,
+    category_third,
+    rating,
+    language,
   } = req.body;
 
   const updatedData = {
     fr: {
-      nameFr,
-      descriptionFr,
+      description: descriptionFr,
+      name: nameFr,
     },
     ua: {
-      nameUa,
-      descriptionUa,
+      description: descriptionUa,
+      name: nameUa,
     },
     ru: {
-      nameRu,
-      descriptionRu,
+      description: descriptionRu,
+      name: nameRu,
     },
     image,
-    date,
-    time,
-    article_event,
+    image_1,
+    image_2,
     specialistId,
     duration,
     category,
-    rating
+    category_second,
+    category_third,
+    rating,
+    language,
+    article_event: id,
   };
 
-  const event = await Events.findById({ _id: id });
+  console.log("UPDATE EVENT", updatedData);
 
   try {
-    const resUpdate = await Events.findByIdAndUpdate({ _id: id }, updatedData, {
+    const resUpdate = await Events.findOneAndUpdate({ article_event: id }, updatedData, {
       new: true,
     });
-    const newResponse = dataFilterObj(resUpdate);
-    return res.status(201).json(newResponse._doc);
+    const events = await Events.find();
+    return res.status(201).json(events);
   } catch (err) {
     throw new ValidationError(err.message);
   }

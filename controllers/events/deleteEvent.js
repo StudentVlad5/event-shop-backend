@@ -1,15 +1,16 @@
-const { Events } = require('../../models');
+const { Events } = require("../../models");
 
 const deleteEvent = async (req, res, next) => {
   try {
-    const { user, params } = req;
-    const _id = params.id;
+    const { params } = req;
+    const id = params.id;
 
-    const events = await Events.deleteOne({ _id });
-    if (events.deletedCount === 0) {
+    const event = await Events.deleteOne({ article_event: id });
+    if (event.deletedCount === 0) {
       return res.status(400).json({ message: `Bad request (id incorrect)` });
     }
-    res.json({ message: 'Success deleted' });
+    const events = await Events.find();
+    res.status(200).json(events);
   } catch (error) {
     res.status(400).json({ message: `Bad request (id incorrect)` });
   }

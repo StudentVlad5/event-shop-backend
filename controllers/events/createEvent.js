@@ -5,50 +5,57 @@ let path = require("path");
 const createEvent = async (req, res, next) => {
   // const newData = dataFilterObj(req.body);
   const {
-    image,
-    date,
-    time,
+    image,    
+    image_1,
+    image_2,
     nameFr,
     descriptionFr,
     nameUa,
     descriptionUa,
     nameRu,
     descriptionRu,
-    article_event,
     specialistId,
     duration,
     category,
-    rating
+    category_second,
+    category_third,
+    rating,
+    language,
+    id,
   } = req.body;
 
   const newData = {
     fr: {
-      nameFr,
-      descriptionFr,
+      description: descriptionFr,
+      name: nameFr,
     },
     ua: {
-      nameUa,
-      descriptionUa,
+      description: descriptionUa,
+      name: nameUa,
     },
     ru: {
-      nameRu,
-      descriptionRu,
+      description: descriptionRu,
+      name: nameRu,
     },
     image,
-    date,
-    time,
-    article_event,
+    image_1,
+    image_2,
     specialistId,
     duration,
     category,
-    rating
+    category_second,
+    category_third,
+    rating,
+    language,
+    article_event: id,
   };
 
   console.log("CREATE EVENT:", newData);
 
   try {
     const resCreate = await Events.create(newData);
-    return res.status(201).json(resCreate);
+    const events = await Events.find();
+    return res.status(201).json(events);
   } catch (err) {
     throw new ValidationError(err.message);
   }
