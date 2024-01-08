@@ -5,7 +5,7 @@ let path = require("path");
 const updateActiveEvent = async (req, res, next) => {
   const { id } = req.params;
   const {
-    article_event,
+    eventId,
     date,
     time,
     price,
@@ -13,6 +13,7 @@ const updateActiveEvent = async (req, res, next) => {
     booking,
     vacancies,
     language,
+    language_secondary,
     locationFr,
     addressFr,
     locationUa,
@@ -23,18 +24,19 @@ const updateActiveEvent = async (req, res, next) => {
 
   const updatedData = {
     fr: {
-      locationFr,
-      addressFr,
+      location: locationFr,
+      address: addressFr,
     },
     ua: {
-      locationUa,
-      addressUa,
+      location: locationUa,
+      address: addressUa,
     },
     ru: {
-      locationRu,
-      addressRu,
+      location: locationRu,
+      address: addressRu,
     },
-    article_event,
+    article_eventID: id,
+    eventId,
     date,
     time,
     price,
@@ -42,26 +44,15 @@ const updateActiveEvent = async (req, res, next) => {
     booking,
     vacancies,
     language,
+    language_secondary,
   };
-
-  // const event = await ActiveEvents.findById({ _id: id });
-
-  // if (req.file?.path) {
-  //   updatedData["en"].image = path.basename(req.file?.path);
-  //   updatedData["ua"].image = path.basename(req.file?.path);
-  //   updatedData["de"].image = path.basename(req.file?.path);
-  // } else {
-  //   updatedData["en"].image = event["en"].image;
-  //   updatedData["ua"].image = event["en"].image;
-  //   updatedData["de"].image = event["en"].image;
-  // }
-
   try {
-    const resUpdate = await ActiveEvents.findByIdAndUpdate({ _id: id }, updatedData, {
+    const resUpdate = await ActiveEvents.findOneAndUpdate({ article_eventID: id }, updatedData, {
       new: true,
     });
-    const newResponse = dataFilterObj(resUpdate);
-    return res.status(201).json(newResponse._doc);
+
+    const services = await ActiveEvents.find().sort({ createdAt: -1 });
+    return res.status(201).json(services);
   } catch (err) {
     throw new ValidationError(err.message);
   }

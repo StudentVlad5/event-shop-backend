@@ -5,7 +5,8 @@ let path = require("path");
 const createActiveEvent = async (req, res, next) => {
   // const newData = dataFilterObj(req.body);
   const {
-    article_event,
+    id,
+    eventId,
     date,
     time,
     price,
@@ -13,6 +14,7 @@ const createActiveEvent = async (req, res, next) => {
     booking,
     vacancies,
     language,
+    language_secondary,
     locationFr,
     addressFr,
     locationUa,
@@ -23,18 +25,19 @@ const createActiveEvent = async (req, res, next) => {
 
   const newData = {
     fr: {
-      locationFr,
-      addressFr,
+      location: locationFr,
+      address: addressFr,
     },
     ua: {
-      locationUa,
-      addressUa,
+      location: locationUa,
+      address: addressUa,
     },
     ru: {
-      locationRu,
-      addressRu,
+      location: locationRu,
+      address: addressRu,
     },
-    article_event,
+    article_eventID: id,
+    eventId,
     date,
     time,
     price,
@@ -42,13 +45,15 @@ const createActiveEvent = async (req, res, next) => {
     booking,
     vacancies,
     language,
+    language_secondary,
   };
 
   console.log("CREATE ACTIVE EVENT:", newData);
 
   try {
     const resCreate = await ActiveEvents.create(newData);
-    return res.status(201).json(resCreate);
+    const services = await ActiveEvents.find().sort({ createdAt: -1 });
+    return res.status(201).json(services);
   } catch (err) {
     throw new ValidationError(err.message);
   }
