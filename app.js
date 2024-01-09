@@ -9,6 +9,7 @@ const {
   routerCategories,
   routerSpecialists,
   routerAdmin,
+  routerOrders,
 } = require("./routes/api");
 
 const app = express();
@@ -35,6 +36,7 @@ app.use("/api/active_events", routerActiveEvents);
 app.use("/api/specialists", routerSpecialists);
 app.use("/api/admin", routerAdmin);
 app.use("/api/categories", routerCategories);
+app.use("/api/orders", routerOrders);
 
 app.use((req, res) => {
   console.log("!!!!! APP (req, res) !!!!!!");

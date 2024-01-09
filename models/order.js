@@ -4,13 +4,11 @@ require("mongoose-type-email");
 
 const ordersValidationSchema = Joi.object({
   eventId: Joi.string().min(3).max(32).required(),
-  activeEventId: Joi.string().min(3).max(32).required(),
+  activeEventID: Joi.string().min(3).max(32).required(),
   date: Joi.date().required(),
   time: Joi.string(),
-  userId: Joi.string().min(3).max(32).required(),
   userName: Joi.string().min(3).max(32).required(),
   userEmail: Joi.string().email().required(),
-  userPhone: Joi.string().required(),
   bookingSeats: Joi.number().required(),
   priceTotal: Joi.number().required(),
   status: Joi.string().min(3).max(32).required(),
@@ -22,9 +20,9 @@ const ordersSchema = new mongoose.Schema(
       type: String,
       required: [true, "Set eventId"],
     },
-    activeEventId: {
+    activeEventID: {
       type: String,
-      required: [true, "Set activeEventId"],
+      required: [true, "Set activeEventID"],
     },
     date: {
       type: Date,
@@ -33,10 +31,6 @@ const ordersSchema = new mongoose.Schema(
     time: {
       type: String,
     },
-    userId: {
-      type: String,
-      required: [true, "Set userId"],
-    },
     userName: {
       type: String,
       required: [true, "Set userName"],
@@ -44,10 +38,6 @@ const ordersSchema = new mongoose.Schema(
     userEmail: {
       type: mongoose.SchemaTypes.Email,
       required: [true, "Set email user"],
-    },
-    userPhone: {
-      type: String,
-      required: [true, "Set userPhone"],
     },
     bookingSeats: {
       type: Number,

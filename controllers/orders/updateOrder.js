@@ -29,7 +29,7 @@ const updateOrder = async (req, res, next) => {
     userPhone,
     bookingSeats,
     priceTotal,
-    status,
+    status: status ? status :"new",
   };
 
   console.log('UPDATE ORDER', updatedData);
@@ -42,8 +42,8 @@ const updateOrder = async (req, res, next) => {
         new: true,
       }
     );
-    const newResponse = dataFilterObj(resUpdate);
-    return res.status(201).json(newResponse._doc);
+    const orders = await Orders.find();
+    res.status(201).json(orders);
   } catch (err) {
     throw new ValidationError(err.message);
   }
