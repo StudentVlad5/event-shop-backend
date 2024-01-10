@@ -7,7 +7,7 @@ const multerConfig = multer.diskStorage({
     cb(null, FILE_DIR);
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+    cb(null, file.originalname.toLocaleLowerCase());
   },
 });
 
