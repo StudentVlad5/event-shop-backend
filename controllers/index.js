@@ -1,10 +1,11 @@
-const auth = require("./auth");
-const users = require("./users");
-const events = require("./events");
-const active_events = require("./active_events");
-const categories = require("./categories");
-const specialists = require("./specialists");
-const orders = require("./orders");
+const auth = require('./auth');
+const users = require('./users');
+const events = require('./events');
+const active_events = require('./active_events');
+const categories = require('./categories');
+const specialists = require('./specialists');
+const orders = require('./orders');
+const messages = require('./messages');
 
 module.exports = {
   auth,
@@ -14,4 +15,5 @@ module.exports = {
   categories,
   specialists,
   orders,
+  messages,
 };
