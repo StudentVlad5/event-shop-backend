@@ -1,14 +1,14 @@
 const { ValidationError } = require('../../helpers');
 const { Specialists } = require('../../models');
 
-const getspecialistById = async (req, res, next) => {
+const getSpecialistById = async (req, res, next) => {
   const id = req.params.id;
   try {
-    const specialistById = await Specialists.findById({ specialistId: id });
+    const specialistById = await Specialists.findOne({ specialistId: id });
     res.status(200).json(specialistById);
   } catch (err) {
     throw new ValidationError(err.message);
   }
 };
 
-module.exports = getspecialistById;
+module.exports = getSpecialistById;

@@ -12,11 +12,7 @@ const get = async (req, res, next) => {
           rating: -1,
         });
     } else {
-      specialists = await Specialists.find().sort({
-        nameUa: 1,
-        nameFr: 1,
-        nameRu: 1,
-      });
+      specialists = await Specialists.find();
     }
 
     res.status(200).json(specialists);
