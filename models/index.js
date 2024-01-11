@@ -4,12 +4,13 @@ const {
   userUpdateValidationSchema,
   userEditValidationSchema,
   userRegistationSchema,
-} = require("./user");
-const { Categories, categoriesValidationSchema } = require("./category");
-const { Events, eventsValidationSchema } = require("./event");
-const { ActiveEvents, activeEventsValidationSchema } = require("./activeEvent");
-const { Specialists, specialistValidationSchema } = require("./specialist");
-const { Orders, ordersValidationSchema } = require("./order");
+} = require('./user');
+const { Categories, categoriesValidationSchema } = require('./category');
+const { Events, eventsValidationSchema } = require('./event');
+const { ActiveEvents, activeEventsValidationSchema } = require('./activeEvent');
+const { Specialists, specialistValidationSchema } = require('./specialist');
+const { Orders, ordersValidationSchema } = require('./order');
+const { Messages, messagesValidationSchema } = require('./message');
 
 module.exports = {
   Users,
@@ -27,4 +28,6 @@ module.exports = {
   activeEventsValidationSchema,
   Orders,
   ordersValidationSchema,
+  Messages,
+  messagesValidationSchema,
 };
