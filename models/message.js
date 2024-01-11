@@ -6,6 +6,7 @@ const messagesValidationSchema = Joi.object({
   name: Joi.string().min(1).max(32).required(),
   email: Joi.string().email().required(),
   message: Joi.string().required(),
+  status: Joi.string(),
 });
 
 const messagesSchema = new mongoose.Schema(
@@ -22,6 +23,10 @@ const messagesSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Set message'],
     },
+    status:{
+      type: String,
+      default:"new",
+    }
   },
   {
     versionKey: false,
