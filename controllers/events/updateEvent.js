@@ -20,7 +20,6 @@ const updateEvent = async (req, res, next) => {
     category_second,
     category_third,
     rating,
-    language,
   } = req.body;
 
   const updatedData = {
@@ -45,7 +44,6 @@ const updateEvent = async (req, res, next) => {
     category_second,
     category_third,
     rating,
-    language,
     article_event: id,
   };
 

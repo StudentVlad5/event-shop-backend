@@ -6,7 +6,6 @@ const eventsValidationSchema = Joi.object({
   article_event: Joi.string().min(1).max(32).required(),
   specialistId: Joi.string().min(1).max(32).required(),
   duration: Joi.string().min(1).max(32).required(),
-  language: Joi.string().min(1).max(32).required(),
   category: Joi.string().required(),
   category_second: Joi.string(),
   category_third: Joi.string(),
@@ -61,10 +60,6 @@ const EventsSchema = new mongoose.Schema(
     specialistId: {
       type: String,
       required: [true, "Set specialistId"],
-    },
-    language: {
-      type: String,
-      required: [true, "Set language"],
     },
     duration: {
       type: String,

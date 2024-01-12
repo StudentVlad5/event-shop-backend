@@ -20,8 +20,7 @@ const createEvent = async (req, res, next) => {
     category_second,
     category_third,
     rating,
-    language,
-    id,
+        id,
   } = req.body;
 
   const newData = {
@@ -46,7 +45,6 @@ const createEvent = async (req, res, next) => {
     category_second,
     category_third,
     rating,
-    language,
     article_event: id,
   };
 

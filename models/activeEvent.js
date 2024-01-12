@@ -9,50 +9,26 @@ const activeEventsValidationSchema = Joi.object({
   time: Joi.string().required(),
   language: Joi.string().required(),
   language_secondary: Joi.string(),
+  language_third: Joi.string(),
   seats: Joi.number().min(1).max(5000).required(),
   booking: Joi.number().min(1).max(5000).required(),
   vacancies: Joi.number().min(1).max(5000).required(),
   price: Joi.number().min(1).max(300000).required(),
-  locationFr: Joi.string().min(1).max(32).required(),
-  addressFr: Joi.string().min(1).max(132),
-  locationUa: Joi.string().min(1).max(32).required(),
-  addressUa: Joi.string().min(1).max(132),
-  locationRu: Joi.string().min(1).max(32).required(),
-  addressRu: Joi.string().min(1).max(132),
+  location: Joi.string().min(1).max(32).required(),
+  address: Joi.string().min(1).max(132),
+  status: Joi.string(),
 });
 
 const ActiveEventsSchema = new mongoose.Schema(
   {
-    fr: {
-      location: {
+    location: {
         type: String,
         required: [true, "Set location"],
       },
-      address: {
+    address: {
         type: String,
         default: "",
       },
-    },
-    ua: {
-      location: {
-        type: String,
-        required: [true, "Set location"],
-      },
-      address: {
-        type: String,
-        default: "",
-      },
-    },
-    ru: {
-      location: {
-        type: String,
-        default: "",
-      },
-      address: {
-        type: String,
-        required: [true, "Set address"],
-      },
-    },
     article_eventID: {
       type: String,
       required: [true, "Set article_evenID"],
@@ -92,6 +68,15 @@ const ActiveEventsSchema = new mongoose.Schema(
     language_secondary: {
       type: String,
       default: "",
+    },
+    language_third: {
+      type: String,
+      default: "",
+    },
+    status: {
+      type: String,
+      default: "active",
+      enum: ["active", "blocked"],
     },
   },
   {
