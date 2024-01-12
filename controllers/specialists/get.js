@@ -9,7 +9,7 @@ const get = async (req, res, next) => {
     if (sort) {
       if (sort === 'rating')
         specialists = await Specialists.find().sort({
-          rating: -1,
+          rating: 1,
         });
     } else {
       specialists = await Specialists.find();
