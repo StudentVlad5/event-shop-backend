@@ -14,27 +14,15 @@ const updateActiveEvent = async (req, res, next) => {
     vacancies,
     language,
     language_secondary,
-    locationFr,
-    addressFr,
-    locationUa,
-    addressUa,
-    locationRu,
-    addressRu,
+    language_third,
+    location,
+    address,
+    status,
   } = req.body;
 
   const updatedData = {
-    fr: {
-      location: locationFr,
-      address: addressFr,
-    },
-    ua: {
-      location: locationUa,
-      address: addressUa,
-    },
-    ru: {
-      location: locationRu,
-      address: addressRu,
-    },
+    location,
+    address,
     article_eventID: id,
     eventId,
     date,
@@ -45,6 +33,8 @@ const updateActiveEvent = async (req, res, next) => {
     vacancies,
     language,
     language_secondary,
+    language_third,
+    status
   };
   try {
     const resUpdate = await ActiveEvents.findOneAndUpdate({ article_eventID: id }, updatedData, {
