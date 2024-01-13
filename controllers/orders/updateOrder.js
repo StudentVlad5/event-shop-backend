@@ -6,13 +6,11 @@ const updateOrder = async (req, res, next) => {
   const { id } = req.params;
   const {
     eventId,
-    activeEventId,
+    activeEventID,
     date,
     time,
-    userId,
     userName,
     userEmail,
-    userPhone,
     bookingSeats,
     priceTotal,
     status,
@@ -20,13 +18,11 @@ const updateOrder = async (req, res, next) => {
 
   const updatedData = {
     eventId,
-    activeEventId,
+    activeEventID,
     date,
     time,
-    userId,
     userName,
     userEmail,
-    userPhone,
     bookingSeats,
     priceTotal,
     status: status ? status :"new",

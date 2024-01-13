@@ -4,13 +4,11 @@ const { Orders } = require("../../models");
 const createOrder = async (req, res, next) => {
   const {
     eventId,
-    activeEventId,
+    activeEventID,
     date,
     time,
-    userId,
     userName,
     userEmail,
-    userPhone,
     bookingSeats,
     priceTotal,
     status,
@@ -18,13 +16,11 @@ const createOrder = async (req, res, next) => {
 
   const newData = {
     eventId,
-    activeEventId,
+    activeEventID,
     date,
     time,
-    userId,
     userName,
     userEmail,
-    userPhone,
     bookingSeats,
     priceTotal,
     status: status ? status :"new",
