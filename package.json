@@ -2,10 +2,10 @@
   "name": "event-shop-backend",
   "version": "1.0.0",
   "description": "site for booking event",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "start:dev": "nodemon server"
+    "start": "node index.js",
+    "start:dev": "nodemon index"
   },
   "repository": {
     "type": "git",
