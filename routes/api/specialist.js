@@ -1,7 +1,6 @@
 const express = require('express');
 const { specialists } = require('../../controllers');
-const ctrlWrapper = require('../../middleWares/ctrlWrapper');
-const { upload } = require('../../middleWares');
+const { ctrlWrapper, upload, uploadCloud } = require('../../middleWares');
 
 const {
   createSpecialist,
@@ -15,7 +14,12 @@ const router = express.Router();
 
 router.post('/', ctrlWrapper(createSpecialist));
 router.post('/:id', ctrlWrapper(updateSpecialist));
-router.patch('/:id', upload.single('avatar'), ctrlWrapper(updateSpecialistImg));
+// router.patch('/:id', upload.single('avatar'), ctrlWrapper(updateSpecialistImg));
+router.patch(
+  '/:id',
+  uploadCloud.single('avatar'),
+  ctrlWrapper(updateSpecialistImg)
+);
 router.delete('/:id', ctrlWrapper(deleteSpecialist));
 router.get('/', ctrlWrapper(get));
 router.get('/:id', ctrlWrapper(getSpecialistById));
