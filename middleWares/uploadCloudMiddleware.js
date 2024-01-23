@@ -11,7 +11,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'event-shop',
+    folder: 'bloomskill',
     resource_type: 'auto',
     allowedFormats: ['jpg', 'png', 'jpeg', 'webp', 'gif'],
   },
