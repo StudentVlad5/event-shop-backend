@@ -1,6 +1,6 @@
 const express = require('express');
 const { specialists } = require('../../controllers');
-const { ctrlWrapper, upload, uploadCloud } = require('../../middleWares');
+const { ctrlWrapper, uploadCloud } = require('../../middleWares');
 
 const {
   createSpecialist,
@@ -14,7 +14,6 @@ const router = express.Router();
 
 router.post('/', ctrlWrapper(createSpecialist));
 router.post('/:id', ctrlWrapper(updateSpecialist));
-// router.patch('/:id', upload.single('avatar'), ctrlWrapper(updateSpecialistImg));
 router.patch(
   '/:id',
   uploadCloud.single('avatar'),

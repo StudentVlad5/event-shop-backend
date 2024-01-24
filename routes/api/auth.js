@@ -30,7 +30,7 @@ router.post('/', ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.current));
 router.patch(
   '/user/:id',
   ctrlWrapper(authMiddleware),
-  upload.single('avatar'),
+  // upload.single('avatar'),
   validation(userUpdateValidationSchema),
   ctrlWrapper(ctrl.update)
 );

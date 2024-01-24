@@ -1,40 +1,30 @@
-const { ValidationError, dataFilterObj } = require('../../helpers');
-const { Events } = require('../../models');
-let path = require('path');
+const { ValidationError } = require("../../helpers");
+const { Events } = require("../../models");
+let path = require("path");
 
 const updateEventImg = async (req, res, next) => {
-  const { id } = req.params;
+  const {id} = req.params;
   const perem = req.body?.name;
-
   const updatedData = {
-    [perem]: '',
+    [perem]: "",
   };
+  req.file?.path
+    ? (updatedData[perem] = path.basename(req.file?.path))
+    : (updatedData[perem] = path.basename(""));
 
-  // req.file?.path
-  //   ? (updatedData[perem] = path.basename(req.file?.path))
-  //   : (updatedData[perem] = path.basename(""));
+  console.log("id", id);
+  console.log("UPDATE updatedData", updatedData);
+  const resUpdate = await Events.findOneAndUpdate(
+    { article_event: id },
+    updatedData,
+    {
+      new: true,
+    }
+  );
 
-  const imagesObject = {};
-  Object.values(req.files).forEach(e => {
-    imagesObject[e[0].fieldname] = e[0].path;
-  });
-
-  console.log('UPDATE updatedData', updatedData);
-
-  try {
-    const resUpdate = await Events.findOneAndUpdate(
-      { article_event: id },
-      updatedData,
-      ...imagesObject,
-      {
-        new: true,
-      }
-    );
-    const events = await Events.find();
-    return res.status(201).json(events);
-  } catch (err) {
-    throw new ValidationError(err.message);
-  }
+  const services = await Events.find().sort({ createdAt: -1 });
+  res.status(200).json(services);
 };
+
 
 module.exports = updateEventImg;
